@@ -1,0 +1,52 @@
+results
+1hourrasohuber               mae     error_mw
+cnn       0.191827  5507.760447
+lstm      0.086281  2477.301062
+lstm_cnn  0.093153  2674.634516
+First Two Weeks of Predictions
+
+hubberRasoNoDROP               mae     error_mw
+cnn       0.191827  5507.760447
+lstm      0.080931  2323.708675
+lstm_cnn  0.093184  2675.521223
+
+hubberRasoComDROPnolostm
+\hline
+LSTM &     0.191827      &    5507.760020       \\
+\hline
+CNN &    0.086281       &          2477.300420  \\
+\hline
+CNN+LSTM &   0.093259        &   2677.651672   \\
+
+mseCod2filtroSemDropout3.PNG
+               mae     error_mw
+cnn       0.203610  5846.069594
+lstm      0.082028  2355.210193
+lstm_cnn  0.100285  2879.396627
+First Two Weeks of Predictions
+
+tcc2BKp MSE Profundo             mae     error_mw
+cnn       0.080383  2307.972998
+lstm      0.087757  2519.678376
+lstm_cnn  0.085003  2440.623701
+
+
+tcc2 MSE.py' 
+
+               mae     error_mw
+cnn       0.203610  5846.070450
+lstm      0.082028  2355.210407
+lstm_cnn  0.100498  2885.516080
+
+final1 tcc2.py
+               mae      rsme     error_mw
+dnn       0.112724  0.138926  3236.544390
+cnn       0.191827  0.238341  5507.760020
+lstm      0.080931  0.107526  2323.708675
+lstm_cnn  0.093405  0.126521  2681.861444
+
+final2               mae      rsme     error_mw
+dnn       0.081050  0.112200  2327.113030
+cnn       0.081027  0.112320  2326.452225
+lstm      0.239376  0.290269  6872.998917
+lstm_cnn  0.084918  0.114723  2438.184562
