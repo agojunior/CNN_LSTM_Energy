@@ -387,6 +387,19 @@ performance_df = pd.DataFrame(performance, index=names, columns=['mae','rsme'])
 performance_df['error_mw'] = performance_df['mae'] * df['total load forecast'].mean()
 print(performance_df)    
 
+names = list()
+performance = list()
+
+#print table for validation set
+for key, value in model_configs.items():
+    names.append(key)
+    mae = value['model'].evaluate(val_ds)
+    performance.append([mae[1],mae[2]])
+    
+performance_df = pd.DataFrame(performance, index=names, columns=['mae','rsme'])
+performance_df['error_mw'] = performance_df['mae'] * df['total load forecast'].mean()
+print(performance_df)   
+
 fig, axs = plt.subplots(4, 1, figsize=(18, 10))
 days = 14
 
