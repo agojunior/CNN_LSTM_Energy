@@ -249,7 +249,7 @@ def run_model(model_name, model_func, model_configs, epochs):
     model_hist = model.fit(train_ds, validation_data=val_ds, epochs=epochs)
 
     model_configs[model_name] = cfg_model_run(model, model_hist, test_ds)
-    return test_ds
+    return test_ds, val_ds
 def dnn_model(n_steps, n_horizon, n_features, lr):
     tf.keras.backend.clear_session()
     
@@ -378,6 +378,19 @@ performance = list()
 for key, value in model_configs.items():
     names.append(key)
     mae = value['model'].evaluate(value['test_ds'])
+    performance.append([mae[1],mae[2]])
+    
+performance_df = pd.DataFrame(performance, index=names, columns=['mae','rsme'])
+performance_df['error_mw'] = performance_df['mae'] * df['total load forecast'].mean()
+print(performance_df)    
+
+names = list()
+performance = list()
+
+#print table for validation set
+for key, value in model_configs.items():
+    names.append(key)
+    mae = value['model'].evaluate(val_ds)
     performance.append([mae[1],mae[2]])
     
 performance_df = pd.DataFrame(performance, index=names, columns=['mae','rsme'])
