@@ -258,6 +258,8 @@ def dnn_model(n_steps, n_horizon, n_features, lr):
         tf.keras.layers.Flatten(input_shape=(n_steps, n_features)),
         tf.keras.layers.Dense(128, activation='relu'),
         tf.keras.layers.Dropout(0.3),
+        tf.keras.layers.Dense(128, activation='relu'),
+        tf.keras.layers.Dropout(0.3),
         tf.keras.layers.Dense(n_horizon)
     ], name='dnn')
     

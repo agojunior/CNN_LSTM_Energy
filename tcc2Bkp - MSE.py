@@ -247,28 +247,7 @@ def run_model(model_name, model_func, model_configs, epochs):
 
     model_configs[model_name] = cfg_model_run(model, model_hist, test_ds)
     return test_ds
-def dnn_model(n_steps, n_horizon, n_features, lr):
-    tf.keras.backend.clear_session()
-    
-    model = tf.keras.models.Sequential([
-        tf.keras.layers.Flatten(input_shape=(n_steps, n_features)),
-        tf.keras.layers.Dense(128, activation='relu'),
-        tf.keras.layers.Dropout(0.3),
-        tf.keras.layers.Dense(128, activation='relu'),
-        tf.keras.layers.Dropout(0.3),
-        tf.keras.layers.Dense(n_horizon)
-    ], name='dnn')
-    
-    loss=tf.keras.losses.Huber()
-    optimizer = tf.keras.optimizers.Adam(lr=lr)
-    
-    model.compile(loss=loss, optimizer='adam', metrics=['mae', tf.keras.metrics.RootMeanSquaredError()])
-    
-    return model
 
-
-dnn = dnn_model(*get_params(multivar=True))
-dnn.summary()
 def cnn_model(n_steps, n_horizon, n_features, lr=3e-4):
     
     tf.keras.backend.clear_session()
@@ -352,7 +331,6 @@ model_configs=dict()
 run_model("cnn", cnn_model, model_configs, epochs=150)
 run_model("lstm", lstm_model, model_configs, epochs=150)
 run_model("lstm_cnn", lstm_cnn_model, model_configs, epochs=150)
-run_model("dnn", cnn_model, model_configs, epochs=150)
 legend = list()
 
 fig, axs = plt.subplots(1, 4, figsize=(25,5))

@@ -262,7 +262,7 @@ def dnn_model(n_steps, n_horizon, n_features, lr):
         tf.keras.layers.Dense(n_horizon)
     ], name='dnn')
     
-    loss=tf.keras.losses.Huber()
+    loss = tf.keras.losses.MeanSquaredError()
     optimizer = tf.keras.optimizers.Adam(lr=lr)
     
     model.compile(loss=loss, optimizer='adam', metrics=['mae', tf.keras.metrics.RootMeanSquaredError()])
@@ -343,7 +343,7 @@ model_configs=dict()
 run_model("cnn", cnn_model, model_configs, epochs=150)
 run_model("lstm", lstm_model, model_configs, epochs=150)
 run_model("lstm_cnn", lstm_cnn_model, model_configs, epochs=150)
-run_model("dnn", cnn_model, model_configs, epochs=150)
+run_model("dnn", dnn_model, model_configs, epochs=150)
 legend = list()
 
 fig, axs = plt.subplots(1, 4, figsize=(25,5))
